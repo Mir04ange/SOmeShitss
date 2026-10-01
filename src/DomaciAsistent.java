@@ -145,7 +145,23 @@ public class DomaciAsistent {
 
         System.out.println("Termostat s názvem " + nazev + " nebyl nalezen.");
     }
+    public void vypisAktivni() {
+        System.out.println("Zapnutá zařízení:");
 
+        for (ISmartDevice z : zarizeni) {
+            if (z.stav().equals("zapnuto")) {
+                System.out.println(z);
+            }
+        }
+
+        System.out.println("Spuštěné služby:");
+
+        for (IStreamingService s : sluzby) {
+            if (s.prehrava()) {
+                System.out.println(s);
+            }
+        }
+    }
 
 
 }

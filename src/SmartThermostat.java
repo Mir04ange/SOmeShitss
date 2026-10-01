@@ -67,6 +67,11 @@ class SmartThermostat implements ISmartDevice {
         this.nazev = nazev;
     }
 
+    @Override
+    public int getPocetSpusteni() {
+        return 0;
+    }
+
     public boolean isZapnuto() {
         return zapnuto;
     }

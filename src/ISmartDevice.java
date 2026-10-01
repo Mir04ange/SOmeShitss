@@ -1,21 +1,10 @@
-/**
- * Rozhraní pro chytré zařízení, které definuje základní operace.
- */
 public interface ISmartDevice {
-    /**
-     * Zapne chytré zařízení.
-     */
-    public void zapni();
+    void zapni();
+    void vypni();
+    String stav();
 
-    /**
-     * Vypne chytré zařízení.
-     */
-    public void vypni();
+    String getNazev();
+    void setNazev(String nazev);
 
-    /**
-     * Vrátí aktuální stav chytrého zařízení.
-     *
-     * @return Řetězec reprezentující aktuální stav zařízení.
-     */
-    public String stav();
+    int getPocetSpusteni();
 }
