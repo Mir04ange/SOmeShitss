@@ -48,4 +48,8 @@ class SmartLight implements ISmartDevice {
         }
     }
 
+    @Override
+    public String toString() {
+        return nazev + " - " + stav() ;
+    }
 }

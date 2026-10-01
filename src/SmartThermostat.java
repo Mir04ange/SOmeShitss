@@ -4,7 +4,7 @@
  * Navíc umožňuje nastavit teplotu.
  */
 class SmartThermostat implements ISmartDevice {
-    private String nazev;
+    private static String nazev;
     private boolean zapnuto;
     private double teplota;
 
@@ -62,4 +62,32 @@ class SmartThermostat implements ISmartDevice {
         System.out.println("Teplota nastavena na " + teplota + "°C.");
     }
 
+    public static String getNazev() {
+        return nazev;
+    }
+
+    public void setNazev(String nazev) {
+        this.nazev = nazev;
+    }
+
+    public boolean isZapnuto() {
+        return zapnuto;
+    }
+
+    public void setZapnuto(boolean zapnuto) {
+        this.zapnuto = zapnuto;
+    }
+
+    public double getTeplota() {
+        return teplota;
+    }
+
+    public void setTeplota(double teplota) {
+        this.teplota = teplota;
+    }
+
+    @Override
+    public String toString() {
+        return nazev + " - " + stav() ;
+    }
 }

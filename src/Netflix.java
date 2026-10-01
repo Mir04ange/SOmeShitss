@@ -16,5 +16,6 @@ public class Netflix implements IStreamingService {
     public boolean prehrava() {
         return prehravani;
     }
+
 }
 

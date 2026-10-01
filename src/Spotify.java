@@ -30,3 +30,4 @@ class Spotify implements IStreamingService {
         return prehravani;
     }
 }
+

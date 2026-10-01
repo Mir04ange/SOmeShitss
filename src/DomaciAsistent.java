@@ -60,7 +60,7 @@ public class DomaciAsistent {
     public void vypisZarizeni() {
         System.out.println("Seznam spravovaných zařízení:");
         for (ISmartDevice z : zarizeni) {
-            System.out.println(z.stav());
+            System.out.println(z);
         }
     }
 
@@ -77,6 +77,9 @@ public class DomaciAsistent {
      * Vypne všechna spravovaná chytrá zařízení.
      */
     public void vypniVse() {
+        for (ISmartDevice z : zarizeni) {
+            z.vypni();
+        }
     }
 
     /**
@@ -92,22 +95,38 @@ public class DomaciAsistent {
 
     /**
      * Ovládá chytrý termostat podle zadaného názvu a umožňuje nastavit novou teplotu.
-     * Pokud termostat s daným názvem není nalezen, zobrazí chybovou zprávu.
+     * Pokud termostat s daným názvem nennalezen, zobrazí chybovou zprávu.
      */
     public void ovladaniTermostatu() {
-        System.out.println("Zadejte název termostatu, který chcete ovládat:");
-        String nazev = scanner.nextLine();
+
+        System.out.println("Seznam termostatů:");
+
         for (ISmartDevice z : zarizeni) {
-            if ((z instanceof SmartThermostat) && (z.stav().equals(nazev))) {
-                System.out.print("Zadejte novou teplotu: ");
-                double teplota = scanner.nextDouble();
-                scanner.nextLine();
-                ((SmartThermostat) z).nastavTeplotu(teplota);
-                return;
+            if (z instanceof SmartThermostat) {
+                System.out.println(z);
             }
         }
+
+        System.out.println("Zadejte název termostatu, který chcete ovládat:");
+        String nazev = scanner.nextLine();
+
+        for (ISmartDevice z : zarizeni) {
+            if (z instanceof SmartThermostat) {
+
+                SmartThermostat termostat = (SmartThermostat) z;
+
+                if (SmartThermostat.getNazev().equalsIgnoreCase(nazev)) {
+                    System.out.print("Zadejte novou teplotu: ");
+                    double teplota = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    termostat.nastavTeplotu(teplota);
+                    return;
+                }
+            }
+        }
+
         System.out.println("Termostat s názvem " + nazev + " nebyl nalezen.");
     }
-
 }
 
