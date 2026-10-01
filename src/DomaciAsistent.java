@@ -52,8 +52,25 @@ public class DomaciAsistent {
      */
     public void odeberZarizeni() {
 
-    }
+        System.out.println("Seznam zařízení:");
 
+        for (ISmartDevice z : zarizeni) {
+            System.out.println(z);
+        }
+
+        System.out.print("Zadejte název zařízení, které chcete odebrat: ");
+        String nazev = scanner.nextLine();
+
+        for (ISmartDevice z : zarizeni) {
+            if (z.toString().startsWith(nazev + " -")) {
+                zarizeni.remove(z);
+                System.out.println("Zařízení " + nazev + " bylo odebráno.");
+                return;
+            }
+        }
+
+        System.out.println("Zařízení " + nazev + " nebylo nalezeno.");
+    }
     /**
      * Vypíše všechna spravovaná chytrá zařízení.
      */
@@ -128,5 +145,8 @@ public class DomaciAsistent {
 
         System.out.println("Termostat s názvem " + nazev + " nebyl nalezen.");
     }
+
+
+
 }
 

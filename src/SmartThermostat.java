@@ -52,11 +52,8 @@ class SmartThermostat implements ISmartDevice {
         }
     }
 
-    /**
-     * Nastaví novou teplotu na chytrém termostatu.
-     *
-     * @param novaTeplota Nová teplota, která má být nastavena.
-     */
+// jenom ja a bůh víme jak to funguje
+
     public void nastavTeplotu(double novaTeplota) {
         this.teplota = novaTeplota;
         System.out.println("Teplota nastavena na " + teplota + "°C.");
