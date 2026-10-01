@@ -1,18 +1,13 @@
-/**
- * Rozhraní pro streamovací službu, které definuje základní operace pro přehrávání obsahu.
- */
 public interface IStreamingService {
-    /**
-     * Přehrává zadaný titul.
-     *
-     * @param nazevTitulu Název titulu, který má být přehrán.
-     */
-    public void prehrat(String nazevTitulu);
+	void prehrat(String nazevTitulu);
+	void stop();
+	boolean prehrava();
 
-    /**
-     * Zastaví aktuálně přehrávaný obsah.
-     */
-    public void stop();
+	default String getNazev() {
+		return getClass().getSimpleName();
+	}
 
-    public boolean prehrava();
+	default int getPocetSpusteni() {
+		return 0;
+	}
 }

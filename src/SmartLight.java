@@ -1,55 +1,26 @@
-/**
- * Třída SmartLight implementuje rozhraní ISmartDevice a poskytuje
- * konkrétní implementace metod pro zapnutí, vypnutí a zjištění stavu chytrého světla.
- */
-class SmartLight implements ISmartDevice {
-    private String nazev;
-    private boolean zapnuto;
+class SmartLight extends ZakladniZarizeni {
 
-    /**
-     * Vytvoří nové chytré světlo s daným názvem.
-     *
-     * @param nazev Název chytrého světla.
-     */
-    public SmartLight(String nazev) {
-        this.nazev = nazev;
-        this.zapnuto = false;
-    }
+	public SmartLight(String nazev) {
+		this(nazev, 60, 5);
+	}
 
-    /**
-     * Zapne chytré světlo.
-     */
-    @Override
-    public void zapni() {
-        zapnuto = true;
-        System.out.println(nazev + " je zapnuto.");
-    }
+	public SmartLight(String nazev, double prikon, int priorita) {
+		super(nazev, prikon, priorita);
+	}
 
-    /**
-     * Vypne chytré světlo.
-     */
-    @Override
-    public void vypni() {
-        zapnuto = false;
-        System.out.println(nazev + " je vypnuto.");
-    }
-
-    /**
-     * Vrátí aktuální stav chytrého světla.
-     *
-     * @return Řetězec reprezentující aktuální stav světla.
-     */
-    @Override
-    public String stav() {
-        if (zapnuto) {
-            return "zapnuto";
-        } else {
-            return "vypnuto";
-        }
-    }
-
-    @Override
-    public String toString() {
-        return nazev + " - " + stav() ;
-    }
+	@Override
+	public String toString() {
+		return (
+			getNazev() +
+			" - " +
+			stav() +
+			" (" +
+			getPrikon() +
+			" W, priorita " +
+			getPriorita() +
+			", spuštění " +
+			getPocetSpusteni() +
+			")"
+		);
+	}
 }

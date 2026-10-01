@@ -1,4 +1,5 @@
-public class Netflix implements IStreamingService {
+/** Nová streamovací služba přidaná do domácího asistenta. */
+class YouTube implements IStreamingService {
 
 	private boolean prehravani;
 	private int pocetSpusteni;
@@ -7,13 +8,13 @@ public class Netflix implements IStreamingService {
 	public void prehrat(String titul) {
 		if (!prehravani) pocetSpusteni++;
 		prehravani = true;
-		System.out.println("Přehrávání na Netflixu: " + titul);
+		System.out.println("Přehrávání na YouTube: " + titul);
 	}
 
 	@Override
 	public void stop() {
 		prehravani = false;
-		System.out.println("Netflix přehrávání ukončeno.");
+		System.out.println("YouTube přehrávání ukončeno.");
 	}
 
 	@Override

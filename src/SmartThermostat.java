@@ -1,95 +1,38 @@
-/**
- * Třída SmartThermostat implementuje rozhraní ISmartDevice a poskytuje
- * konkrétní implementace metod pro zapnutí, vypnutí a zjištění stavu chytrého termostatu.
- * Navíc umožňuje nastavit teplotu.
- */
-class SmartThermostat implements ISmartDevice {
-    private static String nazev;
-    private boolean zapnuto;
-    private double teplota;
+class SmartThermostat extends ZakladniZarizeni {
 
-    /**
-     * Vytvoří nový chytrý termostat s daným názvem a počáteční teplotou.
-     *
-     * @param nazev Název chytrého termostatu.
-     * @param teplota Počáteční teplota termostatu.
-     */
-    public SmartThermostat(String nazev, double teplota) {
-        this.nazev = nazev;
-        this.teplota = teplota;
-        this.zapnuto = false;
-    }
+	private double teplota;
 
-    /**
-     * Zapne chytrý termostat a nastaví teplotu.
-     */
-    @Override
-    public void zapni() {
-        zapnuto = true;
-        System.out.println(nazev + " je zapnutý, teplota nastavena na " + teplota + "°C.");
-    }
+	public SmartThermostat(String nazev, double teplota) {
+		this(nazev, teplota, 1500, 8);
+	}
 
-    /**
-     * Vypne chytrý termostat.
-     */
-    @Override
-    public void vypni() {
-        zapnuto = false;
-        System.out.println(nazev + " je vypnutý.");
-    }
+	public SmartThermostat(String nazev, double teplota, double prikon, int priorita) {
+		super(nazev, prikon, priorita);
+		this.teplota = teplota;
+	}
 
-    /**
-     * Vrátí aktuální stav chytrého termostatu.
-     *
-     * @return Řetězec reprezentující aktuální stav termostatu.
-     */
-    @Override
-    public String stav() {
-        if (zapnuto) {
-            return "zapnuto";
-        } else {
-            return "vypnuto";
-        }
-    }
+	public void nastavTeplotu(double novaTeplota) {
+		this.teplota = novaTeplota;
+		System.out.println("Teplota nastavena na " + teplota + "°C.");
+	}
 
-// jenom ja a bůh víme jak to funguje
+	public double getTeplota() {
+		return teplota;
+	}
 
-    public void nastavTeplotu(double novaTeplota) {
-        this.teplota = novaTeplota;
-        System.out.println("Teplota nastavena na " + teplota + "°C.");
-    }
+	public void setTeplota(double teplota) {
+		this.teplota = teplota;
+	}
 
-    public static String getNazev() {
-        return nazev;
-    }
+	@Override
+	public void zapni() {
+		if (!isZapnuto()) super.zapni(); else System.out.println(
+			getNazev() + " je již zapnutý, teplota nastavena na " + teplota + "°C."
+		);
+	}
 
-    public void setNazev(String nazev) {
-        this.nazev = nazev;
-    }
-
-    @Override
-    public int getPocetSpusteni() {
-        return 0;
-    }
-
-    public boolean isZapnuto() {
-        return zapnuto;
-    }
-
-    public void setZapnuto(boolean zapnuto) {
-        this.zapnuto = zapnuto;
-    }
-
-    public double getTeplota() {
-        return teplota;
-    }
-
-    public void setTeplota(double teplota) {
-        this.teplota = teplota;
-    }
-
-    @Override
-    public String toString() {
-        return nazev + " - " + stav() ;
-    }
+	@Override
+	public String toString() {
+		return super.toString() + ", teplota " + teplota + "°C";
+	}
 }
