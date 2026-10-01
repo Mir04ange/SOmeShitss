@@ -1,4 +1,4 @@
-# Wiki Documentation — SOmeShitss Home Assistant – Project Wiki
+
 
 Repository: Mir04ange/SOmeShitss
 Source: https://github.com/Mir04ange/SOmeShitss
